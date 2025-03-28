@@ -1,0 +1,58 @@
+<!-- Angular binding is a powerful feature that allows you to synchronize data between the component and the view. This ensures that any changes in the component's state are automatically reflected in the view and vice versa. -->
+<div class="row">
+    <div class="col-6 bg-success">
+        <h3>One Way</h3>
+        <div class="row">
+            <div class="col-6 bg-warning p-3">
+                it is implemented (flow) form  .ts to .html file
+                <br>
+                two methods => 1.interpolation <br>2.property binding
+            </div>
+            <div class="col-6 bg-secondary p-3">
+                flow - from form to ts
+            </div>
+        </div>
+    </div>
+    <div class="col-6 bg-danger">
+        <h3>Two Way</h3>
+    </div>
+</div>
+<!-- One way--
+1. from ts to html    
+2. from html to ts dataflow
+two method to do both the operation
+a) Interpolation
+b) propertyBinding -->
+<div class="row">
+    <div class="col-3">
+        <!-- interpolation -->
+        coursename = {{coursename}}
+        <!-- can also do this -->
+         <input type="text" value="{{coursename}}">
+    </div>
+    <div class="col-6" >
+        <!-- using propertyBinding...just wrap the property in [] -->
+         <input type="text" [value]="coursename">
+    </div>
+</div>
+<!-- From html file to ts file data transfor -->
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-primary" (click)="showAlert()">Show alert</button>
+    </div>
+    <div class="col4">
+        <button class="btn btn-secondary" (click)="showDynamicAlert('Tanuja')">Show</button>
+      </div>      
+</div>
+
+
+<!-- Now two way -->
+<!-- for sync means hm ui pe kuch change kre vo ts me khud se change ho jaye -->
+ <!-- iske liye hme ng model directive use krna pdega
+ for that sbse phle ts file me formModule import krva lo -->
+<div class="row">
+    <div class="col-3">
+        <input type="text" [(ngModel)]="coursename">
+        <!-- ab agr ui pe is input tag ke andr kuch change hua to backend pe bhi change hoga  -->
+    </div>
+</div>
