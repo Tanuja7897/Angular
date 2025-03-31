@@ -1,1 +1,56 @@
-<p>template-form works!</p>
+<!-- when we bind our form using ngModel directive ..it is called as template form -->
+<!-- Note------ -->
+<!-- when you use ngModel inside form tag name attribute is mendatory to use inside input tag -->
+<!-- steps- 
+1.create form 
+2.make field inside the object 
+---in .ts file
+3.bind fields with corrospoind input tage using ng model 
+4.make a function that give you data after subbmission  -->
+
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4" >Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email" [(ngModel)]="userForm.email" name="email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Password" [(ngModel)]="userForm.password" name="password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" [(ngModel)]="userForm.address" name="address">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" [(ngModel)]="userForm.address2" name="address2">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity" [(ngModel)]="userForm.city" name="city">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control" [(ngModel)]="userForm.state" name="state">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip" [(ngModel)]="userForm.zip" name="zip">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="onSaveUser()">Sign in</button>
+</form>

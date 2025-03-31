@@ -1,0 +1,28 @@
+<!-- resource api needs promise type of data  we can do it by two ways -
+1. fetch api (js ki)
+2. http client request
+
+Steps - 
+1. import resource from @angular/core 
+2. create a variable and store resource ({
+    //give the property loader
+    //loader take function promise kind of value
+    userListResource = resource({
+        loader:()=>{
+          return fetch('https://projectapi.gerasim.in/api/Complaint/GetAllUsers').then((res)=>{
+            res.json() as Promise<any []>
+            //res ko json me parse krke usko array me store krvana 
+          })
+        }
+      }) -->
+
+
+
+<p>
+    
+    {{userListResource.value()}}
+</p>
+<!-- form http client -->
+<p>
+    {{userList.value()}}
+</p>

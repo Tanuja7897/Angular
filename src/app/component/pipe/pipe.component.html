@@ -1,0 +1,136 @@
+<!-- pipe --
+before dispaly data on UI if you want you can formate it by using pipe . IT has two types 
+1. default type 
+2. Custome type(can create on own type of pipe)
+
+Steps 
+1. import pipe 
+2. apply on tage -->
+
+<div class="container mt-4">
+    <div class="row">
+    <!-- json pipe -->
+    <!-- hmare jo obj hai vo screen pe {{obj }} aise print hota h but for printing data inside jason obj use use this pip  -->
+    <!-- {{userForm | json}}  -->
+      <!-- User List -->
+      <div [class]=" isSideFormVisible == true ? 'col-md-7':'col-12 table-container' ">
+        <div class="card">
+          <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">User List</h5>
+            <button class="btn btn-warning" (click)="toggleForm()">Add New User</button>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>User ID</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Full Name</th>
+                  <th>Role</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of userList; track $index){
+                    <tr>
+                        <td>{{$index+1}}</td>
+
+                        <!-- Adding pip on username -->
+                        <td>{{item.userName | uppercase}}>
+                        <td>{{item.password}}</td>
+                        <td>{{item.fullName}}</td>
+                        <td>{{item.role}}</td>
+                        
+                        <td>{{item.createdDate | date}}>
+                            <!-- More Customization on date 
+                            1. MM - represets months into number
+                            2. MMM- represted half month name like SEP 
+                            3. MMMM - full month Name
+                            4. YY - last ye 2 digit of year 
+                            5. YYYY - whole year -->
+                            <!-- <td>{{item.createdDate | date:("dd-MMMM-YYYY")}}> -->
+                        <td>
+                          <button class="btn btn-primary btn-sm" >Edit</button>
+                          <button class="btn btn-danger btn-sm" >Delete</button>
+                          <!-- kyoki api ko kevl userid chahiye usse hi delete hoga -->
+                        
+                        </td>
+                      </tr>
+                }
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Add User Form -->
+       @if (isSideFormVisible){
+        <div class="col-md-5">
+            <div class="card">
+              <div class="card-header bg-success text-white">
+                <button class="btn btn-warning" (click)="toggleForm()">close</button>
+                <h5 class="clo-6 text-end">Add User</h5>
+                
+              </div>
+              <div class="card-body">
+                <form [formGroup]="userForm">
+                  <div class="row">
+                  
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label" >Username</label>
+                      <input type="text" class="form-control" placeholder="Username" formControlName="userName"/>
+                      <div class="text-danger">
+                        @if (userForm.controls["userName"].touched){
+                          @if (userForm.controls["userName"].errors?.["required"]){
+                            <span>This is required</span>
+                          }
+                          @if (userForm.controls["userName"].errors?.["minlength"]){
+                            <span>Min 3 character requird</span>
+                          }
+                          
+                        }
+                        
+                      </div>
+                    </div>
+      
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-control" placeholder="Email" formControlName="emailId"/>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Full Name</label>
+                      <input type="text" class="form-control" placeholder="Full Name" formControlName="fullName"/>
+                    </div>
+      
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Role</label>
+                      <input type="text" class="form-control" placeholder="Role" formControlName="role"/>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Password</label>
+                      <input type="password" class="form-control" placeholder="Password" formControlName="password"/>
+                    </div>
+                  </div>
+      
+                  <div class="d-flex justify-content-between">
+                   
+                    <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
+                    
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    
+                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+       }
+      
+    </div>
+  </div>
+  
+

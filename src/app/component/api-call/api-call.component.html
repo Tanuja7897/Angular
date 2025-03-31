@@ -1,0 +1,29 @@
+we will see here only get api
+
+<!-- Api operations-
+1.  GET - getting data from database
+2.  PUSH - TO create new record in database
+3.  PUT - update existing record 
+4.  DELETE - delete the data from database -->
+
+<!-- STEPS- 
+
+1. go to app.config - add provideHTTPClient Method inside Application config
+    HTTPClient this is liberary which helps in api fetching 
+
+2. create obj of httpclientservice in .ts file using inject Method
+    http = inject(HttpClient)
+
+3. Make a function and use method inside it --
+    getAllUsers(){
+    this.http.get("").subscribe((response:any)={})
+    .subscribe function catches response from api
+    } -->
+
+<button (click)='getAllUsers()'>Submit</button>
+<ul>
+    
+    @for (item of storeApiResponse;track item.id) {
+        <li>{{ item.firstName }}</li>
+    }
+</ul>
